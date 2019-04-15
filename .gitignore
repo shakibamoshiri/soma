@@ -6,4 +6,5 @@ dev/
 *.css
 *.css.map
 
-
+build/
+.npmignore
