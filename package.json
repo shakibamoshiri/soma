@@ -1,6 +1,6 @@
 {
   "name": "somacss",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Pure CSS3 Solutions for the Web",
   "main": "index.js",
   "scripts": {
