@@ -1,0 +1,21 @@
+pre.code-y {
+    color: #000;
+    background-color: #fafafa;
+    border-left: 30px #0CF solid;
+    overflow-x: visible;
+    margin: 0;
+
+    ol {
+        position: relative;
+        left: 10px;
+        padding: 0;
+        margin: 0;
+        border: 0;
+        li {
+            line-height: 0;
+            // For Firefox 
+            height: 0;
+        }
+    }
+}
+

@@ -1,0 +1,22 @@
+.button-y,
+.button-x {
+.button-link {
+	display: inline-block;
+	width: 12ch;
+    padding: 5px 10px;
+    background-color: #eee;
+    border-radius: 5px;
+    text-align: center;
+    text-decoration: none;
+    }
+}
+
+.button-y-indicator {}
+
+.button-y .button-y .button-y-indicator {
+    background-color: #fc0;
+}
+
+.button-y .button-y .button-y .button-y-indicator {
+    background-color: #fe0;
+}

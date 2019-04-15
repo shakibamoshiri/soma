@@ -1,0 +1,12 @@
+
+.slick-y {
+	display: flex;
+	flex-flow: column nowrap;
+}
+.slick-y-item {
+	flex: 1 1 auto;
+	position: relative;
+	margin: 10px;
+	overflow: hidden;
+	background-color: #fef;
+}

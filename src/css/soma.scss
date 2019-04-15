@@ -1,0 +1,35 @@
+/*
+	Soma CSS Library
+	
+	First version: 1.0.0
+	First release: 2019-03-10
+	
+	Last version: 1.0.0
+	Last release: 2019-03-10
+
+	Author: Shakiba Moshiri
+*/
+
+@import "override/common-rule";
+
+@import "carousels/carousel-x";
+@import "carousels/carousel-y";
+@import "carousels/carousel-z";
+
+@import "progresses/progress-x";
+
+@import "buttons/button-x";
+@import "buttons/button-y";
+@import "buttons/button-link";
+
+@import "slicks/slick-x";
+@import "slicks/slick-z";
+
+@import "switches/switch-language";
+@import "switches/toggle-switch";
+@import "switches/step-switch";
+
+@import "codes/code-y";
+@import "codes/code-x";
+
+@import "override/user-override";

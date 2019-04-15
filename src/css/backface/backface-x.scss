@@ -1,0 +1,35 @@
+div.backface-x {
+    height: 100%;
+    /*        height: 200px;*/
+    position: relative;
+    transition: transform 1000ms ease 50ms;
+    /* transform-style: preserver-3d is vital */
+    transform-style: preserve-3d;
+}
+div.backface-x > * {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    /* backface-visibility: hidden is vital */
+    backface-visibility: hidden;
+}
+div.backface-y .backface-y-back {
+    z-index: 2;
+}
+
+.backface-x .backface-x-front {
+    background-color: #fef;
+}
+.backface-x .backface-x-back{
+    background-color: #fe0;
+}
+
+div.backface-x .backface-x-back {
+    transform: rotateY(180deg);
+}
+
+input[name|="toggle-switch"]:checked~ div.backface-x {
+    transform: rotateY(180deg);
+}

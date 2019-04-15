@@ -1,0 +1,53 @@
+.slick-x {
+	display: flex;
+	flex-flow: row wrap;
+	height: 100%;
+	position: relative;
+	
+}
+.slick-x-item {
+	flex: 1 1 0;
+	position: relative;
+}
+
+.slick-x-item {
+	overflow: hidden;
+	.carousel-z-indicator {
+		right: 0;
+		top: 20%;
+		left: 0;
+		bottom: auto;
+		margin: auto;
+		label {
+			padding: 0;
+		}
+	}
+}
+
+
+$tablet: 1024px;
+$phablet: 768px;
+$phone: 576px;
+$minimum: 432px;
+
+@mixin responsive( $size ){
+	@media screen and ( max-width: $size ){
+		@content;
+	}
+}
+
+@include responsive( $tablet ){
+}
+
+@include responsive( $phablet ){
+	.slick-x-item { flex: 1 1 calc(50% - 40px); }
+//	.slick-x-item { flex: 1 1 50%; }
+}
+
+@include responsive( $phone ){
+//	.slick-x-item { flex: 1 1 75%; }
+}
+
+@include responsive( $minimum ){
+	.slick-x-item { flex: 1 1 100%; }
+}

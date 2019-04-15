@@ -1,0 +1,67 @@
+.nav-z {
+    position: relative;
+	input {
+		display: none;
+	}
+}
+
+.nav-z .nav-z-indicator {
+    position: relative;
+	width: 12ch;
+	background-color: #0cc;
+	display: inline-block;
+	padding: 5px 10px;
+	cursor: pointer;
+	border-radius: 5px;
+	background-color: #0cc;
+	z-index: 1;
+}
+
+
+.nav-z .nav-z-indicator::before {
+	content: "";
+	z-index: 1;
+    position: absolute;
+    border-style: solid;
+    border-width: 1ch;
+    width: 0;
+    height: 0;
+    margin: 0;
+    padding: 0;
+    background: none;
+    left: calc(100% - 30px);
+    border-color: transparent  #000 transparent transparent;
+	
+//	transform-origin: 75% 50%;
+}
+
+.nav-z .nav-z-item {
+	transition:  top 200ms ease 50ms;
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	background-color: #fe0;
+	opacity: 0;
+}
+
+.nav-z .nav-z-item > * {
+	margin: 0;
+}
+
+//.nav-z input:checked~ section {
+//	position: relative;
+//}
+.nav-z input:checked~ section:nth-of-type(1) {
+    top: 100%;
+	opacity: 1;
+}
+.nav-z input:checked~ section:nth-of-type(2) {
+    top: 200%;
+	opacity: 1;
+}
+.nav-z input:checked~ section:nth-of-type(3) {
+    top: 300%;
+	opacity: 1;
+}

@@ -1,0 +1,58 @@
+.button-x {
+    position: relative;
+}
+.button-x.root {
+    position: absolute;
+}
+
+.button-x input {
+    display: none
+}
+.button-x-indicator {
+    position: relative;
+	width: 12ch;
+	display: inline-block;
+	padding: 5px 10px;
+	cursor: pointer;
+	margin: 0 2px 0 0;
+	background-color: #edc;
+}
+
+.button-x-indicator::before {
+	content: "";
+	z-index: 1;
+    position: absolute;
+    border-style: solid;
+    border-width: 1ch;
+    width: 0;
+    height: 0;
+    margin: 0;
+    padding: 0;
+    background: none;
+    left: calc(100% - 30px);
+    border-color: transparent  #000 transparent transparent;
+	transition: transform 200ms ease 50ms;
+	transform-origin: 75% 50%;
+}
+
+.button-x-item {
+    position: absolute;
+    display: none;
+	margin: 0 2px 0 0;
+}
+
+.button-x > input:checked~ .button-x-item {
+    position: relative;
+    display: inline-block;
+}
+	
+.button-x > input:checked+ label::before {
+    transform: rotateZ(180deg);
+	border-color: transparent  #fff transparent transparent;
+}
+
+*[dir="rtl"] {
+	.button-x .button-x-indicator::before {
+		left: 0;
+	}
+}

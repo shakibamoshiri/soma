@@ -1,0 +1,46 @@
+/*  slick-x override by users  */
+.soma {
+    height: 300px;
+    background-color: #0CC;
+    box-shadow: 5px 5px 18px 0px #CCC, -5px 5px 10px 0px #CCC;
+}
+
+.slick-x-item {
+    margin: 10px;
+    background-color: #cc0;
+    //	outline: 1px #000 dotted;
+}
+.slick-x-item .carousel-z section:nth-of-type(1){
+
+}
+.slick-x-item .carousel-z section:nth-of-type(2){
+    background-color: #f80;
+}
+.slick-x-item .carousel-z section:nth-of-type(3){
+    background-color: #f8f;
+}
+.slick-x-item .carousel-z section:nth-of-type(4){
+    background-color: #fe0;
+}
+.slick-x-item .carousel-z section:nth-of-type(5){
+    background-color: #ef8;
+}
+
+.progress-x-item {
+    padding: 150px 25px;
+    box-sizing: border-box;
+}
+
+.progress-x-item > div {
+    background-color: #fafafa;
+    padding:  10px;
+    border-radius: 10px;
+}
+
+.carousel-y-indicator {
+    label.switch-y-user-guide::before {
+         background-color: #fe0;
+         padding: 0 2px;
+         border-radius: 3px;
+    }
+}

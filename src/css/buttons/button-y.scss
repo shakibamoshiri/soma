@@ -1,0 +1,62 @@
+.button-y {
+    position: relative;
+	display: flex;
+	flex-flow: column nowrap;
+}
+.button-y.root {
+    position: absolute;
+}
+
+.button-y input {
+    display: none
+}
+.button-y-indicator {
+    position: relative;
+	width: 12ch;
+	display: inline-block;
+	padding: 5px 10px;
+	cursor: pointer;
+	background-color: #0cc;
+}
+
+.button-y-indicator::before {
+    position: absolute;
+	content: "";
+	z-index: 1;
+    position: absolute;
+	top: 0;
+    border-style: solid;
+    border-width: 10px;
+    width: 0;
+    height: 0;
+    margin: 0;
+    padding: 0;
+    background: none;
+    left: calc(100% - 30px);
+    border-color: transparent transparent #000 transparent;
+	
+	transition: transform 200ms ease 50ms;
+	transform-origin: 50% 75%;
+}
+
+.button-y-item {
+    position: absolute;
+    display: none;
+	margin: 2px 0 0 0;
+}
+
+.button-y > input:checked~ .button-y-item {
+    position: relative;
+    display: block;
+}
+	
+.button-y > input:checked+ label::before {
+    transform: rotateZ(180deg);
+	border-color: transparent transparent #fff transparent;
+}
+
+*[dir="rtl"] {
+	.button-y .button-y-indicator::before {
+		left: 15px;
+	}
+}

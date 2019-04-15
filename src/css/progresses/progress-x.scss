@@ -1,0 +1,105 @@
+
+$progress_x_transition_time: 1000;
+.progress-x {
+display: flex;
+    flex-flow:  row nowrap;
+	height: 100%;
+	position: relative;
+    overflow: hidden;
+    input {
+        display: none;
+    }    
+    $max_progress_item: 9;
+	
+	// for loop to create selections logic
+	@for $index from 0 through $max_progress_item {
+		$plusOne: $index+1;
+		
+		input:nth-of-type(#{$plusOne}):checked ~ .progress-x-item {
+			transform: translateX(-#{$plusOne*100%});
+		}
+		
+		input:nth-of-type(#{$plusOne}):checked ~ .progress-x-indicator label:nth-of-type(#{$plusOne}) .progress-bar{
+			// background-color: #000;
+			// border: 2px #FFF solid;
+			width: 100%;
+		}
+		
+		input:nth-of-type(#{$plusOne}):checked ~ .progress-x-indicator label:nth-of-type(#{$plusOne}) {
+			&::before,
+			&::after {
+				opacity: 0;
+				visibility: hidden;
+			}
+		}
+	} // end of @for loop
+}
+.progress-x-item {
+	flex: 1 1 auto;
+	width: 100%;
+	min-width: 100%;
+	position: relative;
+	left: 0;
+	// transition: transform #{$progress_x_transition_time}ms cubic-bezier(0.5, -0.5, 0.5, 1.5) 50ms;
+	transition: transform #{$progress_x_transition_time}ms ease 50ms;
+}
+.progress-x-indicator {
+	display: flex;
+	justify-content: space-evenly;
+	position: absolute;
+	left: 0;
+	right:  0;
+	bottom: 0;
+	opacity: 1;
+	z-index: 2;
+	label {
+		flex: 1 1 0;
+		background-color: #FFF;
+		transition: background-color 200ms ease 50ms;
+		display: inline-block;
+		cursor: pointer;
+		position: relative;
+		// box-sizing: border-box;
+	}
+	label.switch-title::before {
+		content: attr(data-switch-title);
+		position: absolute;
+		transition: opacity 300ms ease 50ms;
+		background-color: #000;
+		color: #FFF;
+		padding: 5px 10px;
+		top: -50px;
+		left: 0;
+		right: 0;
+		width: 50%;
+		text-align: center;
+		white-space: nowrap;
+		margin: auto;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
+
+	label.switch-title::after {
+		content: "";
+		position: absolute;
+		top: -21px;
+		border-width: 10px;
+		border-style: solid;
+		transition: opacity 300ms ease 50ms;
+		border-color: #000 transparent transparent transparent;
+		width: 0;
+		height: 0;
+		display: block;
+		left: 0;
+		right: 0;
+		margin: auto;
+	}
+}
+
+div.progress-bar {
+	background-color: #cc0;
+	transition: 1000ms ease 50ms;
+	width: 0;
+	text-align: right;
+	border-right: 1px #000 solid;
+}

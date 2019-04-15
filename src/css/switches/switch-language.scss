@@ -1,0 +1,46 @@
+
+.switch-language {
+	position: relative;
+}
+
+*[lang] {
+	position: relative;
+}
+
+input[name="switch-language" ]{
+	display: none;
+}
+label[name="switch-language" ]{
+	cursor: pointer;
+}
+
+
+input[name="switch-language"]:checked~ .multi-language *[lang] {
+	display: none;
+	position: absolute;
+//	opacity: 0;
+//	visibility: hidden;
+//	transition: opacity 100ms ease 50ms;
+}
+input#switch-en:checked~ .multi-language > * {
+	direction: ltr;
+}
+
+input#switch-fa:checked~ .multi-language .switch-language > *,
+input#switch-ku:checked~ .multi-language .switch-language > * {
+	direction: rtl;
+}
+
+input#switch-en:checked~ .multi-language *[lang="en"],
+input#switch-fa:checked~ .multi-language *[lang="fa"],
+input#switch-ku:checked~ .multi-language *[lang="ku"] {
+	display: block;
+	position: relative;
+//	opacity: 1;
+//	visibility: visible;
+}
+input#switch-en:checked~ * label[for="switch-en"],
+input#switch-fa:checked~ * label[for="switch-fa"],
+input#switch-ku:checked~ * label[for="switch-ku"] {
+    background-color: #ddd;
+}

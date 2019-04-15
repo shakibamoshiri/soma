@@ -1,0 +1,243 @@
+
+$carousel_y_transition_time: 1000;
+.carousel-y {
+    height: 100%;
+    display: flex;
+    flex-flow: column nowrap;
+
+    $max_carousel_y: 8;
+
+    // for loop to create selections logic
+    @for $index from 0 through $max_carousel_y {
+        $plusOne: $index+1;
+
+        // for.carousel-y movement up and down
+        input:nth-of-type(#{$plusOne}):checked ~ .carousel-y-item {
+            transform: translateY(-#{$index*100%});
+        }
+
+        // for highlighting active indicator
+        input:nth-of-type(#{$plusOne}):checked ~ .carousel-y-indicator label:nth-of-type(#{$plusOne}) {
+            background-color: #000;
+            // we should not use border because it is added to the width and hight of the element
+            // or enabling box-sizing: border-box
+            border: 2px #FFF solid;
+            cursor: default;
+            &::after {
+                color: #000;
+                // font-weight: bold;
+            }
+        }
+
+
+        // guide the user for next button
+        input:nth-of-type(#{$plusOne}):checked ~ .carousel-y-indicator label:nth-of-type(#{$plusOne}){
+            &::before,
+            &::after {
+                opacity: 1;
+                visibility: visible;
+            }
+        }
+
+        // for top arrow
+        input:nth-of-type(#{$plusOne}):checked ~ .carousel-y-arrow .carousel-y-arrow-top label:nth-of-type(#{$plusOne})+ label{
+            display: block;
+        }
+
+        // for bottom arrow
+        input:nth-of-type(#{$plusOne}):checked ~ .carousel-y-arrow .carousel-y-arrow-bottom label:nth-of-type(#{$plusOne}){
+            display: block;
+        }
+    } // end of @for loop
+
+    // special case for loop back to the beginning
+    // input:last-of-type:checked ~ .carousel-y-indicator label:nth-of-type(1) {
+        // 	&::before,
+        // 	&::after {
+            // 		opacity: 1;
+            // 		visibility: visible;
+        // 	}
+    // }
+
+    // loop back for top arrow
+    input:last-of-type:checked ~ .carousel-y-arrow .carousel-y-arrow-top label:first-of-type {
+        display: block;
+    }
+
+    // loop back for bottom arrow
+    input:last-of-type:checked ~ .carousel-y-arrow .carousel-y-arrow-bottom label:first-of-type {
+        display: block;
+    }
+}
+
+.carousel-y-item {
+    height: 100%;
+    min-height: 100%;
+    display: block;
+    position: relative;
+    transition: transform #{$carousel_y_transition_time}ms ease 50ms;
+}
+
+// centralize the.carousel-y-indicators vertically using flex
+// it is possible without flex but we have to calc() anytime we add a new indicator
+.carousel-y-indicator {
+    position: absolute;
+    z-index: 3;
+    margin: auto 0;
+    left: 5%;
+    top: 0;
+    bottom: 0;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+
+    label {
+        background-color: #FFF;
+        transition: background-color 200ms ease 50ms;
+        width: 17px;
+        height: 17px;
+        cursor: pointer;
+        margin: 10px 0;
+        box-sizing: border-box;
+    }
+
+    label.hover:hover {
+        background-color: #CCC;
+    }
+
+    label.switch-y-title::after {
+        content: attr(data-switch-y-title);
+        height: 1em;
+        position: absolute;
+        left: 3ch;
+        color: #FFF;
+        white-space: nowrap;
+    }
+
+    label.switch-y-user-guide::before {
+        content: attr(data-switch-y-user-guide);
+        white-space: nowrap;
+        position: absolute;
+        color: #000;
+        // NOTE: These can be (and should be) overridden in user-override.scss file
+        // background-color: #fe0;
+        // padding: 0 2px;
+        // border-radius: 3px;
+        opacity: 1;
+        visibility: visible;
+        left: -50px;
+        // font-weight: bold;
+    }
+    label.switch-y-user-guide.switch-y-title::before {
+        opacity: 0;
+        visibility: hidden;
+        transition: #{$carousel_y_transition_time / 2}ms ease 50ms;
+    }
+}
+
+
+/* arrows */
+.carousel-y-arrow {
+    display: flex;
+    flex-flow: column nowrap;
+    position: absolute;
+    width: 50px;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+}
+.carousel-y-arrow.right {
+    left: auto;
+    right: 0;
+}
+.carousel-y-arrow.left {
+    right: auto;
+    left: 0;
+}
+.carousel-y-arrow.top {
+    top: 0;
+    bottom: auto;
+}
+.carousel-y-arrow.bottom {
+    top: auto;
+    bottom: 0;
+}
+.carousel-y-arrow.center {
+    height: 150px;
+    top: 0;
+    bottom: 0;
+}
+.carousel-y-arrow div label {
+    display: none;
+    width: 46px;
+    height: 46px;
+    border: 1px #FFF solid;
+    position: absolute;
+    left:  0;
+    right: 0;
+    bottom: 0;
+    top:  0;
+    z-index: 2;
+    cursor: pointer;
+}
+
+.carousel-y-arrow .carousel-y-arrow-top label::before,
+.carousel-y-arrow .carousel-y-arrow-bottom label::after {
+    content: "";
+    display: block;
+    width: 0;
+    height: 0;
+    position: relative;
+    border-width: 16px;
+    left: 8px;
+    border-style: solid;
+    opacity: 0.2;
+    transition: opacity 200ms ease 50ms;
+}
+.carousel-y-arrow div label:hover::after,
+.carousel-y-arrow div label:hover::before {
+    opacity: 1;
+}
+
+.carousel-y-arrow .carousel-y-arrow-top label::before {
+    top: 0;
+    border-color:  transparent transparent #FFF transparent ;
+}
+.carousel-y-arrow .carousel-y-arrow-bottom label::after {
+    top: 16px;
+    border-color: #FFF transparent transparent transparent;
+}
+
+.carousel-y-arrow-top,
+.carousel-y-arrow-bottom {
+    height: 50px;
+    width: 50px;
+    position: relative;
+}
+
+.carousel-y-arrow-space {
+    flex: 1 1 auto;
+}
+
+.carousel-y.compact-arrow {
+
+    .carousel-y-arrow label {
+        border: 0;
+    }
+    .carousel-y-arrow label::after,
+    .carousel-y-arrow label::before {
+        opacity: 0.5;
+    }
+    .carousel-y-arrow label:hover::after,
+    .carousel-y-arrow label:hover::before {
+        opacity: 1;
+    }
+
+    .carousel-y-arrow-space {
+        flex: none;
+        width: 50px;
+        height: 50px;
+    }
+}

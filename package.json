@@ -1,0 +1,27 @@
+{
+  "name": "somacss",
+  "version": "1.0.0",
+  "description": "Pure CSS3 Solutions for the Web",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/k-five/soma.git"
+  },
+  "keywords": [
+    "frontend",
+    "css3",
+    "carousel",
+    "slick",
+    "button",
+    "tab"
+  ],
+  "author": "Shakiba Moshiri",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/k-five/soma/issues"
+  },
+  "homepage": "https://github.com/k-five/soma#readme"
+}

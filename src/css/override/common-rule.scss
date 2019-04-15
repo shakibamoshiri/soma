@@ -1,0 +1,39 @@
+/*
+
+*/
+
+.soma {
+	display: block;
+	height: 100%;
+	min-height: 300px;
+	direction: ltr;
+	
+	// this overflow: hidden is vital
+	overflow: hidden;
+	
+	// we will have many absolute positioning so catch them
+	position: relative;
+	
+	// remove at all
+	input[type="radio"],
+	input[type="checkbox"] {
+		display: none;
+	}
+}
+
+
+.content-z > * {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+}
+
+.content-z.items-center > * {
+	margin: auto;
+}
+
+
+.full-height { height: 100%; }
+.full-width { width: 100%; }

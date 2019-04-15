@@ -1,0 +1,61 @@
+
+$tab_x_transition_time: 1000;
+
+.tab-x{
+    display: flex;
+    flex-flow:  column nowrap;
+    height: 100%;
+    position: relative;
+
+    $max_tab_x: 9;
+
+    @for $index from 0 through $max_tab_x {
+        $plusOne: $index+1;
+
+        input:nth-of-type(#{$plusOne}):checked ~  .tab-x-container > .tab-x-item {
+            transform: translateX(-#{$index*100%});
+        }
+
+        // for highlighting active indicator
+        input:nth-of-type(#{$plusOne}):checked ~ .tab-x-indicator > label:nth-of-type(#{$plusOne}) {
+            background-color: inherit;
+            cursor: default;
+        }
+    } // end of @for loop
+
+}
+// NOTE: user-override value
+// for your own color override it
+input[name|="tab-x-switch-group"]:not(:checked) ~ .tab-x-indicator > label {
+    background-color: #cc0;
+}
+
+.tab-x > .tab-x-indicator,
+.tab-x > .tab-x-container {
+    flex: 1 1 auto;
+}
+
+.tab-x-indicator {
+    display: flex;
+    z-index: 2;
+    text-align: center;
+    > label {
+        flex: 1 1 0;
+        cursor: pointer;
+        transition: background-color #{$tab_x_transition_time/4}ms ease 50ms;
+    }
+}
+.tab-x-container {
+    display: flex;
+    height: 100%;
+
+    flex-flow: row nowrap;
+    .tab-x-item {
+        flex: 1 1 auto;
+        width: 100%;
+        min-width: 100%;
+        position: relative;
+        left: 0;
+        transition: transform #{$tab_x_transition_time}ms ease 50ms;
+    }
+}

@@ -1,0 +1,53 @@
+$transition_time: 250;
+$max_iteration: 8;
+.step-switch {
+    position: relative;
+
+    > input {
+        display: none;
+    }
+}
+// input[name|="step-switch-controller"]{
+//	display: none;
+// }
+.step-switch-indicator {
+	display: block;
+	position: relative;
+	height: 1em;
+	margin: 15px 0;
+	
+	*[for|="step-switch"] {
+		// z-index: -1;
+		opacity: 0;
+		visibility: hidden;
+		transition: opacity #{$transition_time}ms ease 50ms;
+		background-color: #fafafa;
+		position: absolute;
+		cursor: pointer;
+		box-shadow: 0 0 10px #ccc;
+		padding: 2px 5px;
+	}
+}
+@for $index from 0 through $max_iteration {
+	$plusOne: $index + 1;
+	
+	input[name|="step-switch-group"]:nth-of-type(#{$plusOne}):checked~ .step-switch-indicator label[for|="step-switch"]:nth-of-type(#{$plusOne})+ label{
+		z-index: 2;
+		opacity: 1;
+		visibility: visible;
+	}
+}
+input[name|="step-switch-group"]:last-of-type:checked~ .step-switch-indicator label[for|="step-switch"]:first-of-type{
+		z-index: 2;
+		opacity: 1;
+		visibility: visible;
+}
+*[data-step-switch-target]{
+	transition: all #{$transition_time}ms 50ms;
+}
+/* user usage */ 
+input[name|="step-switch-group"]:nth-of-type(1):checked~ *[data-step-switch-target]{ width: 100%; }
+input[name|="step-switch-group"]:nth-of-type(2):checked~ *[data-step-switch-target]{ width: 90%; }
+input[name|="step-switch-group"]:nth-of-type(3):checked~ *[data-step-switch-target]{ width: 80%; }
+input[name|="step-switch-group"]:nth-of-type(4):checked~ *[data-step-switch-target]{ width: 70%; }
+input[name|="step-switch-group"]:nth-of-type(5):checked~ *[data-step-switch-target]{ width: 60%; }

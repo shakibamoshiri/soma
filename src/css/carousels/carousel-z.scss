@@ -1,0 +1,72 @@
+$carousel_z_transition_time: 1000;
+
+.carousel-z {
+    display: block;
+    position: relative;
+    height: 100%;
+    $max_iteration: 8;
+
+    @for $index from 0 through $max_iteration {
+        $plusOne: $index+1;
+
+        // showing each carousel-z-item
+        input:nth-of-type(#{$plusOne}):checked ~ section:nth-of-type(#{$plusOne}) {
+            z-index: 1;
+            opacity: 1;
+            visibility: visible;
+        }
+
+        // only from 1 - 9, do not select 10th label, because there is not 11th label
+        @if $index != $max_iteration {
+            input:nth-of-type(#{$plusOne}):checked ~ .carousel-z-indicator label:nth-of-type(#{$plusOne})+ label {
+                z-index: 2;
+                opacity: 1;
+                visibility: visible;
+            }
+        }
+
+    }
+
+    // looping back to the beginning
+    input:last-of-type:checked ~ .carousel-z-indicator label:first-of-type {
+        z-index: 2;
+        opacity: 1;
+        visibility: visible;
+    }
+}
+.carousel-z-indicator {
+    display: block;
+    position: absolute;
+    width: 100px;
+    height: 2em;
+    top: 10px;
+    right: 10px;
+    text-align: center;
+
+    label {
+        z-index: -1;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 200ms ease 50ms;
+        background-color: #fff;
+        position: absolute;
+        left: 0;
+        right: 0;
+        cursor: pointer;
+        padding: 5px 10px;
+    }
+}
+.carousel-z-item {
+
+    //	display: none;
+    z-index: -1;
+    opacity: 0;
+    visibility: hidden;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    transition: opacity #{$carousel_z_transition_time}ms ease 50ms;
+    transform-origin: center;
+}

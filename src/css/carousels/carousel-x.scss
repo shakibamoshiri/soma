@@ -1,0 +1,274 @@
+$carousel_x_transition_time: 1000;
+.carousel-x {
+    display: flex;
+    flex-flow:  row nowrap;
+    height: 100%;
+    position: relative;
+
+    @keyframes toolTipUpDown {
+        50% { top: -40px; }
+    }
+    @keyframes arrowUpDown {
+        50% { top: -14px; }
+    }
+
+    // number of.carousel-ys
+    $max_view_x: 8;
+
+    // for loop to create selections logic
+    @for $index from 0 through $max_view_x {
+        $plusOne: $index+1;
+
+        // moving left and right 
+        input:nth-of-type(#{$plusOne}):checked ~ .carousel-x-item {
+            transform: translateX(-#{$index*100%});
+        }
+
+        // for highlighting active indicator
+        input:nth-of-type(#{$plusOne}):checked ~ .carousel-x-indicator label:nth-of-type(#{$plusOne}) {
+            background-color: #000;
+            border: 2px #FFF solid;
+            width: 17px;
+            height: 17px;;
+            cursor: default;
+        }
+
+        // guide the user for next button
+
+        input:nth-of-type(#{$plusOne}):checked ~ .carousel-x-indicator label:nth-of-type(#{$plusOne})+ label{
+            &::before,
+            &::after {
+                opacity: 1;
+                visibility: visible;
+            }
+            &::before {
+                animation-name: toolTipUpDown;
+            }
+            &::after {
+                animation-name: arrowUpDown;
+            }
+        }
+
+        // for right arrow
+        input:nth-of-type(#{$plusOne}):checked ~ .carousel-x-arrow .carousel-x-arrow-right label:nth-of-type(#{$plusOne})+ label{
+            display: block;
+        }
+
+        // for left arrow
+        input:nth-of-type(#{$plusOne}):checked ~ .carousel-x-arrow .carousel-x-arrow-left label:nth-of-type(#{$plusOne}){
+            display: block;
+        }
+    } // end of @for loop
+
+    // special case for loop back to the beginning
+    input:last-of-type:checked ~ .carousel-x-indicator label:first-of-type {
+        &::before,
+        &::after {
+            opacity: 1;
+            visibility: visible;
+        }
+        &::before {
+            animation-name: toolTipUpDown;
+        }
+        &::after {
+            animation-name: arrowUpDown;
+        }
+    }
+
+    // loop back for right arrow
+    input:last-of-type:checked ~ .carousel-x-arrow .carousel-x-arrow-left label:first-of-type {
+        display: block;
+    }
+
+    // loop back for left arrow
+    input:last-of-type:checked ~ .carousel-x-arrow .carousel-x-arrow-right label:first-of-type {
+        display: block;
+    }
+
+}
+
+
+.carousel-x-item {
+    flex: 1 1 auto;
+    width: 100%;
+    min-width: 100%;
+    position: relative;
+    left: 0;
+    transition: transform #{$carousel_x_transition_time}ms ease 50ms;
+}
+
+.carousel-x-indicator {
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    left: 0;
+    right:  0;
+    bottom: 5%;
+    opacity: 1;
+    z-index: 2;
+
+    label {
+        box-sizing: border-box;
+        width: 15px;
+        height: 15px;
+        border-radius: 50%;
+        background-color: #FFF;
+        transition: background-color #{$carousel_x_transition_time/4}ms ease 50ms;
+        display: inline-block;
+        cursor: pointer;
+        margin: 0 10px;
+        position: relative;
+    }
+    label.hover:hover {
+        background-color: #CCC;
+    }
+    label::before,
+    label::after {
+        position: absolute;
+    }
+
+    label.switch-x-user-guide.animation::before,
+    label.switch-x-user-guide.animation::after {
+        animation-duration: 1s;
+        animation-iteration-count: infinite;
+        animation-timing-function: linear;
+    }
+
+    label.switch-x-user-guide::before {
+        content: attr(data-switch-x-user-guide);
+        color: #000;
+        opacity: 0;
+        transition: opacity 300ms ease 50ms;
+        background-color: #000;
+        color: #FFF;
+        padding: 5px 10px;
+        top: -50px;
+        left: -10px;
+        visibility: hidden;
+        white-space: nowrap;
+    }
+
+    label.switch-x-user-guide::after {
+        content: "";
+        position: relative;
+        top: -24px;
+        left: -5px;
+        border-width: 10px;
+        border-style: solid;
+        transition: opacity 300ms ease 50ms;
+        border-color: #000 transparent transparent transparent;
+        width: 0;
+        height: 0;
+        opacity: 0;
+        display: block;
+        visibility: hidden;
+    }
+}
+
+.carousel-x-arrow {
+    display: flex;
+    flex-flow: row nowrap;
+    position: absolute;
+    height: 50px;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+}
+.carousel-x-arrow.left {
+    right: auto;
+}
+.carousel-x-arrow.right {
+    left: auto;
+}
+.carousel-x-arrow.top {
+    top: 0;
+    bottom: auto;
+}
+.carousel-x-arrow.bottom {
+    top: auto;
+    bottom: 0;
+}
+.carousel-x-arrow.center {
+    width: 150px;
+    left: 0;
+    right: 0;
+}
+
+.carousel-x-arrow div label {
+    display: none;
+    width: 46px;
+    height: 46px;
+    border: 1px #FFF solid;
+    position: absolute;
+    left:  0;
+    right: 0;
+    bottom: 0;
+    top:  0;
+    z-index: 2;
+    cursor: pointer;
+}
+
+.carousel-x-arrow-left label::before,
+.carousel-x-arrow-right label::after {
+    content: "";
+    display: block;
+    width: 0;
+    height: 0;
+    position: relative;
+    border-width: 16px;
+    top: 8px;
+    border-style: solid;
+    opacity: 0.2;
+    transition: opacity 200ms ease 50ms;
+}
+
+.carousel-x-arrow div label:hover::after,
+.carousel-x-arrow div label:hover::before {
+    opacity: 1;
+}
+
+.carousel-x-arrow-left label::before {
+    border-color: transparent #FFF transparent transparent;
+}
+.carousel-x-arrow-right label::after {
+    // NOTE special case only for right arrow
+    // moving this arrow 16px (= its border-width) to the right
+    left: 16px;
+    border-color: transparent transparent transparent #FFF;
+}
+
+.carousel-x-arrow-left,
+.carousel-x-arrow-right{
+    height: 50px;
+    width: 50px;
+    position: relative;
+}
+
+.carousel-x-arrow-space {
+    flex: 1 1 auto;
+}
+
+.carousel-x.compact-arrow {
+
+    .carousel-x-arrow label {
+        border: 0;
+    }
+
+    .carousel-x-arrow label::after,
+    .carousel-x-arrow label::before {
+        opacity: 0.5;
+    }
+
+    .carousel-x-arrow label:hover::after,
+    .carousel-x-arrow label:hover::before {
+        opacity: 1;
+    }
+
+    .carousel-x-arrow-space {
+        flex: none;
+        width: 50px;
+        height: 50px;
+    }
+}

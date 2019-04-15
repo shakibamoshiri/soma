@@ -1,0 +1,66 @@
+
+$tab_y_transition_time: 1000;
+
+.tab-y{
+	display: flex;
+    flex-flow:  row nowrap;
+	height: 100%;
+	position: relative;
+	
+	$max_tab_x: 9;
+	
+	@for $index from 0 through $max_tab_x {
+		$plusOne: $index+1;
+		
+		input:nth-of-type(#{$plusOne}):checked ~  .tab-y-container > .tab-y-item {
+			transform: translateY(-#{$index*100%});
+		}
+		
+		input:nth-of-type(#{$plusOne}):checked ~ .tab-y-indicator > label:nth-of-type(#{$plusOne}) {
+            background-color: inherit;
+            cursor: default;
+		}
+	} // end of @for loop
+}
+// NOTE: user-override value
+// for your own color override it
+input[name|="tab-y-switch-group"]:not(:checked) ~ .tab-y-indicator > label {
+    background-color: #cc0;
+}
+
+.tab-y > .tab-y-indicator,
+.tab-y > .tab-y-container {
+    flex: 1 1 auto;
+}
+
+.tab-y-indicator {
+    display: flex;
+    flex-flow: column nowrap;
+	z-index: 2;
+
+	text-align: center;
+	> label {
+		flex: 1 1 0;
+		cursor: pointer;
+        white-space: nowrap;
+        transition: background-color #{$tab_y_transition_time/4}ms ease 50ms;
+        // NOTE: there is no explicit height on the labels
+        // In order to center all text equally we should use
+        // top and down padding or just padding, like so:
+        // padding: 10px;
+	}
+}
+.tab-y-container {
+    display: flex;
+    flex-flow: column nowrap;
+    width: 100%;
+
+    .tab-y-item {
+        flex: 1 1 0;
+        height: 100%;
+        min-height: 100%;
+        position: relative;
+        left: 0;
+        transition: transform #{$tab_y_transition_time}ms ease 50ms;
+    }
+}

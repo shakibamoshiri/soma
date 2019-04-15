@@ -1,0 +1,47 @@
+$toggle_transition_time: 250;
+.toggle-switch {
+    position: relative;
+
+    > input {
+        display: none;
+    }
+}
+.toggle-switch-indicator {
+	display: inline-block;
+//	position: relative;
+	height: 2em;
+	width: 15ch;
+	z-index: 2;
+	
+	.switch-on,
+	.switch-off {
+		position: absolute;
+		opacity: 0;
+		visibility: hidden;
+		transition: opacity #{$toggle_transition_time}ms ease 50ms;
+		cursor: pointer;
+		background-color: #fafafa;
+		margin: 0;
+		box-shadow: 0 0 10px #ccc;
+        padding: 2px 5px;
+	}
+}
+.toggle-switch-indicator.right {
+	right: 0;
+}
+.toggle-switch-indicator.bottom {
+	bottom: 1ch;
+}
+
+input[name|="toggle-switch"]:not(:checked)~ .toggle-switch-indicator .switch-on {
+	opacity: 1;
+	visibility: visible;
+}
+input[name|="toggle-switch"]:checked~ .toggle-switch-indicator .switch-off {
+	opacity: 1;
+	visibility: visible;
+}
+/* user usage */
+input[name|="toggle-switch-group"]:checked~ [data-toggle-switch-target]{
+    background-color: #fef;
+} 
