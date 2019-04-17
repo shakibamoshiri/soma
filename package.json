@@ -2,7 +2,7 @@
   "name": "somacss",
   "version": "1.0.1",
   "description": "Pure CSS3 Solutions for the Web",
-  "main": "index.js",
+  "main": "build/js/soma.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -23,5 +23,13 @@
   "bugs": {
     "url": "https://github.com/k-five/soma/issues"
   },
-  "homepage": "https://github.com/k-five/soma#readme"
+  "homepage": "https://github.com/k-five/soma#readme",
+  "devDependencies": {
+    "@babel/core": "^7.4.3",
+    "@babel/preset-env": "^7.4.3",
+    "babel-loader": "^8.0.5",
+    "webpack": "^4.30.0",
+    "webpack-cli": "^3.3.0",
+    "somacss": "^1.0.1"
+  }
 }
