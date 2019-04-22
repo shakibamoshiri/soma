@@ -105,8 +105,8 @@ $carousel_y_transition_time: 1000;
         background-color: #CCC;
     }
 
-    label.switch-y-title::after {
-        content: attr(data-switch-y-title);
+    label.switch-title::after {
+        content: attr(data-switch-title);
         height: 1em;
         position: absolute;
         left: 3ch;
@@ -114,8 +114,8 @@ $carousel_y_transition_time: 1000;
         white-space: nowrap;
     }
 
-    label.switch-y-user-guide::before {
-        content: attr(data-switch-y-user-guide);
+    label.switch-guide::before {
+        content: attr(data-switch-guide);
         white-space: nowrap;
         position: absolute;
         color: #000;
@@ -128,7 +128,7 @@ $carousel_y_transition_time: 1000;
         left: -50px;
         // font-weight: bold;
     }
-    label.switch-y-user-guide.switch-y-title::before {
+    label.switch-guide.switch-title::before {
         opacity: 0;
         visibility: hidden;
         transition: #{$carousel_y_transition_time / 2}ms ease 50ms;
