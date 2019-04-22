@@ -4,7 +4,11 @@
   "description": "Pure CSS3 Solutions for the Web",
   "main": "build/js/soma.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "css.build": "sass  src/css/soma.scss build/css/soma.css",
+    "css.build.min": "sass --style compressed src/css/soma.scss build/css/soma.min.css",
+    "css.prefix": "./node_modules/.bin/postcss build/css/soma.css --use=autoprefixer --map --no-map --output build/css/soma.prefixed.css",
+    "css.prefix.min": "minify build/css/soma.prefixed.css > build/css/soma.prefixed.min.css"
   },
   "repository": {
     "type": "git",
@@ -27,9 +31,11 @@
   "devDependencies": {
     "@babel/core": "^7.4.3",
     "@babel/preset-env": "^7.4.3",
+    "autoprefixer": "^9.5.1",
+    "babel-jest": "^24.7.1",
     "babel-loader": "^8.0.5",
+    "postcss-cli": "^6.1.2",
     "webpack": "^4.30.0",
-    "webpack-cli": "^3.3.0",
-    "somacss": "^1.0.1"
+    "webpack-cli": "^3.3.0"
   }
 }
