@@ -24,7 +24,7 @@ The CSS part is heavily base on
   - flex-box
   - input's UI-State pseudo-class (= :checked)
   - label's [for] attribute
-  - transform: transition
+  - transform: translate
 
 <h4>JavaScript Part</h4>
 The JS part uses Pure JS DOM APi provided by browsers like
